@@ -1,4 +1,4 @@
-# DeltaPredictor: Understanding Persuasion on Reddit's Change My View 📈
+# Dubby: Understanding Persuasion on Reddit's Change My View 📈
 
 ## Project Overview 🌟
 Welcome to DeltaPredictor, an exploratory journey into the world of persuasive argumentation on Reddit's "Change My View" (CMV) forum. This project leverages advanced Natural Language Processing (NLP) techniques, focusing on transformer-based models, to predict the number of deltas a post will receive, signifying its persuasive impact.
