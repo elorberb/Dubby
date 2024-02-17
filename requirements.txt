@@ -2,3 +2,9 @@ numpy
 pandas
 matplotlib
 convokit
+seaborn
+scikit-learn
+langchain
+openai
+tiktoken
+tiktoken
