@@ -5,6 +5,8 @@ convokit
 seaborn
 scikit-learn
 langchain
+langchain_openai
 openai
 tiktoken
-tiktoken
+
+python-dotenv
