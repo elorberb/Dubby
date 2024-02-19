@@ -8,5 +8,5 @@ langchain
 langchain_openai
 openai
 tiktoken
-
+scikit-learn
 python-dotenv
