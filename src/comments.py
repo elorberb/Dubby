@@ -32,8 +32,6 @@ I would argue that unless everyone is moving at a relatively uniform speed, you'
 Speed limits aren't arbitrary, mostly. They take into account traffic volume, road shape, the possibility of people merging... Even though it sometimes doesn't seem like it, the roads are a complex system that must be managed as such; letting everyone do what they want is only inviting accidents., 
 """
 
-
-
 # ---------------- extra comments ----------------
 comment_4_pos = """
 Let me address this by pointing one thing out: numbers don't lie. With absolutely anything, there will always be things that people that aren't a fan of. Make major changes and instead of Person A hating the series and Person B loving it, now Person A loves it and Person B hates it. You're entirely in your right to feel that CoD is overrated, and personally it seems futile to change this view. You like what you like. I can only provide objective points to maybe calibrate your perspective.
