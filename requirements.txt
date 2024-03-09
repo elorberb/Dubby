@@ -10,3 +10,4 @@ openai
 tiktoken
 scikit-learn
 python-dotenv
+ipykernel
