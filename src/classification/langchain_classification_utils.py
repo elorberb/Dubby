@@ -1,5 +1,5 @@
 import os  
-from src import prompts
+from src import classification_prompts
 from src.langchain_utils import run_chain  
 from langchain_openai import AzureChatOpenAI  
 from langchain.prompts import PromptTemplate  

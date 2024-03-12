@@ -1,8 +1,8 @@
 classification_model_names = [
     # 'distilbert-base-uncased',
     # 'FacebookAI/roberta-base',
-    'falkne/storytelling-change-my-view-en',
-    # 'google-t5/t5-small',
+    # 'falkne/storytelling-change-my-view-en',
+    'google-t5/t5-small',
 ]
 
 model_names = [

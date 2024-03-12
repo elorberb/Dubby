@@ -27,8 +27,8 @@ logger = logging.getLogger(__name__)
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
     # for generative models likt T5 use this code
-    # predictions = np.argmax(logits[0], axis=-1)
-    predictions = np.argmax(logits, axis=-1)
+    predictions = np.argmax(logits[0], axis=-1)
+    # predictions = np.argmax(logits, axis=-1)
     precision, recall, f1, _ = precision_recall_fscore_support(labels, predictions, average='binary')
     acc = accuracy_score(labels, predictions)
     return {

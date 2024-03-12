@@ -6,6 +6,7 @@ seaborn
 scikit-learn
 langchain
 langchain_openai
+langchain-anthropic
 openai
 tiktoken
 scikit-learn
