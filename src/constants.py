@@ -1,8 +1,8 @@
 classification_model_names = [
-    'distilbert-base-uncased',
-    'FacebookAI/roberta-base',
-    'falkne/storytelling-change-my-view-en'
-    'google-t5/t5-small',
+    # 'distilbert-base-uncased',
+    # 'FacebookAI/roberta-base',
+    'falkne/storytelling-change-my-view-en',
+    # 'google-t5/t5-small',
 ]
 
 model_names = [
@@ -16,7 +16,7 @@ classification_default_config = {
     'learning_rate': 2e-5,
     'per_device_train_batch_size': 8,
     'per_device_eval_batch_size': 8,
-    'num_train_epochs': 5,
+    'num_train_epochs': 3,
     'weight_decay': 0.01,
     'evaluation_strategy': 'epoch',
     'save_strategy': 'no',
@@ -29,5 +29,15 @@ test_dataset_path = 'data/test_data.csv'
 
 
 # Paths to samples datasets in hg classification task
-train_dataset_path = 'data/sampled_train_data.csv'
-test_dataset_path = 'data/sampled_test_data.csv'
+sample_train_dataset_path = 'data/sampled_train_data.csv'
+sample_test_dataset_path = 'data/sampled_test_data.csv'
+
+# paths to Inbar updated data
+train_comment_path = 'data/updated_data/train_comment.csv'
+test_comment_path = 'data/updated_data/test_comment.csv'
+train_title_comment_path = 'data/updated_data/train_title_comment.csv'
+test_title_comment_path = 'data/updated_data/test_title_comment.csv'
+train_title_post_comment_path = 'data/updated_data/train_title_post_comment.csv'
+test_title_post_comment_path = 'data/updated_data/test_title_post_comment.csv'
+train_title_post_comment_father_comment_path = 'data/updated_data/train_title_post_comment_father_comment.csv'
+test_title_post_comment_father_comment_path = 'data/updated_data/test_title_post_comment_father_comment.csv'

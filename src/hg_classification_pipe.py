@@ -55,7 +55,7 @@ def train_and_evaluate(model_name, train_dataset_path, test_dataset_path, tokeni
     
     logger.info(f"Initializing tokenizer: {tokenizer_name}")
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
-    tokenizer.pad_token = tokenizer.eos_token
+    # tokenizer.pad_token = tokenizer.eos_token
     logger.info("Tokenizer initialized.")
     
     logger.info("Tokenizing datasets...")
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     parser.add_argument('--learning_rate', type=float, default=2e-5, help='Learning rate for training')
     parser.add_argument('--per_device_train_batch_size', type=int, default=8, help='Batch size per device for training')
     parser.add_argument('--per_device_eval_batch_size', type=int, default=8, help='Batch size per device for evaluation')
-    parser.add_argument('--num_train_epochs', type=int, default=1, help='Number of training epochs')
+    parser.add_argument('--num_train_epochs', type=int, default=3, help='Number of training epochs')
     parser.add_argument('--weight_decay', type=float, default=0.01, help='Weight decay for optimization')
 
     args = parser.parse_args()

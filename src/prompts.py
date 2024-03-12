@@ -1,6 +1,7 @@
 start_task_context_prompt = """  
 As the Delta Classifier (DC), your role is to analyze comments within Reddit's Change My View (CMV) threads, assessing their potential to change the original poster's (OP) viewpoint, which is indicated by the awarding of a delta. 
 A delta signifies a comment has successfully introduced a new perspective, presented compelling evidence, or logically countered the OP's original stance, leading to a change in their viewpoint.
+Classify the comment text into one of the following categories only: 0. comment would not get a delta 1. comment would get a delta.
 """
 
 end_task_context_prompt = """  
