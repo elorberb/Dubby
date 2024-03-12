@@ -1,48 +1,17 @@
 from hg_classification_pipe import train_and_evaluate
-
-# Define default configurations
-default_config = {
-    'learning_rate': 2e-5,
-    'per_device_train_batch_size': 8,
-    'per_device_eval_batch_size': 8,
-    'num_train_epochs': 10,
-    'weight_decay': 0.01,
-    'evaluation_strategy': 'epoch',
-    'save_strategy': 'no',
-    'load_best_model_at_end': False,
-}
-
-# Model names to compare
-model_names = [
-    # 'distilbert-base-uncased',
-    # 'FacebookAI/roberta-base',
-    'google-t5/t5-small',
-    # 'google/gemma-2b',
-    # 'openai-community/openai-gpt',
-    # 'textattack/albert-base-v2-imdb',
-    # 'mistralai/Mistral-7B-v0.1',
-    # 'Rocketknight1/falcon-rw-1b',
-]
-
-
-# Paths to datasets
-train_dataset_path = 'data/train.csv'
-test_dataset_path = 'data/test.csv'
+import constants as const
 
 # Iterate over models and train
-for model_name in model_names:
+for model_name in const.classification_model_names:
     tokenizer_name = model_name
     output_dir = "../results/classification"
     print(f"Training model: {model_name}")
-    try:
-        train_and_evaluate(
-            model_name=model_name,
-            train_dataset_path=train_dataset_path,
-            test_dataset_path=test_dataset_path,
-            tokenizer_name=tokenizer_name,
-            output_dir=output_dir,
-            **default_config
-        )
-    except Exception as e:
-        print(f"Error training model {model_name}: {e}")
-        continue
+    train_and_evaluate(
+        model_name=model_name,
+        train_dataset_path=const.train_dataset_path,
+        test_dataset_path=const.test_dataset_path,
+        tokenizer_name=tokenizer_name,
+        output_dir=output_dir,
+        **const.classification_default_config
+    )
+    

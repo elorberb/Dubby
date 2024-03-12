@@ -1,6 +1,6 @@
 start_task_context_prompt = """  
-    Hello DK (Delta King)! As your current name suggests, your task will be to determine whether posts merit a delta.  
-    A delta typically signifies a change in opinion or perspective on Reddit.
+As the Delta Classifier (DC), your role is to analyze comments within Reddit's Change My View (CMV) threads, assessing their potential to change the original poster's (OP) viewpoint, which is indicated by the awarding of a delta. 
+A delta signifies a comment has successfully introduced a new perspective, presented compelling evidence, or logically countered the OP's original stance, leading to a change in their viewpoint.
 """
 
 end_task_context_prompt = """  

@@ -26,6 +26,8 @@ logger = logging.getLogger(__name__)
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
+    # for generative models likt T5 use this code
+    # predictions = np.argmax(logits[0], axis=-1)
     predictions = np.argmax(logits, axis=-1)
     precision, recall, f1, _ = precision_recall_fscore_support(labels, predictions, average='binary')
     acc = accuracy_score(labels, predictions)
@@ -53,6 +55,7 @@ def train_and_evaluate(model_name, train_dataset_path, test_dataset_path, tokeni
     
     logger.info(f"Initializing tokenizer: {tokenizer_name}")
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
+    tokenizer.pad_token = tokenizer.eos_token
     logger.info("Tokenizer initialized.")
     
     logger.info("Tokenizing datasets...")
@@ -100,7 +103,7 @@ def train_and_evaluate(model_name, train_dataset_path, test_dataset_path, tokeni
     for key, value in evaluation_results.items():
         logger.info(f"  {key}: {value}")
     
-    logger.info(f"Saving evaluation results to {output_dir}/{model_name}_eval_results.txt")
+    logger.info(f"Saving evaluation results to {output_dir}/{model_name.replace("/", "_")}_eval_results.txt")
     with open(f"{output_dir}/{model_name.replace("/", "_")}_eval_results.txt", "w") as f:
         for key, value in evaluation_results.items():
             f.write(f"{key}: {value}\n")
@@ -115,7 +118,7 @@ if __name__ == "__main__":
     parser.add_argument('--model_name', type=str, required=True, help='Model name or path')
     parser.add_argument('--train_dataset_path', type=str, required=True, help='Path to the training dataset')
     parser.add_argument('--test_dataset_path', type=str, required=True, help='Path to the test dataset')
-    parser.add_argument('--tokenizer_name', type=str, required=True, help='Tokenizer name or path')
+    parser.add_argument('--tokenizer_name', type=str, help='Tokenizer name or path')
     parser.add_argument('--output_dir', type=str, required=True, help='Output directory for model and results')
     parser.add_argument('--learning_rate', type=float, default=2e-5, help='Learning rate for training')
     parser.add_argument('--per_device_train_batch_size', type=int, default=8, help='Batch size per device for training')
@@ -124,6 +127,9 @@ if __name__ == "__main__":
     parser.add_argument('--weight_decay', type=float, default=0.01, help='Weight decay for optimization')
 
     args = parser.parse_args()
+    
+    if args.tokenizer_name is None:
+        args.tokenizer_name = args.model_name
     
     train_and_evaluate(
         model_name=args.model_name,
