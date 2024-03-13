@@ -1,8 +1,8 @@
 classification_model_names = [
-    # 'distilbert-base-uncased',
-    # 'FacebookAI/roberta-base',
-    # 'falkne/storytelling-change-my-view-en',
-    'google-t5/t5-small',
+    'distilbert-base-uncased',
+    'FacebookAI/roberta-base',
+    'falkne/storytelling-change-my-view-en',
+    'google-t5/t5-small', # needs to change the metrics calculation function when using this
 ]
 
 model_names = [
