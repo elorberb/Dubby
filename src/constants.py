@@ -1,8 +1,8 @@
 classification_model_names = [
     # 'distilbert-base-uncased',
-    # 'FacebookAI/roberta-base',
+    'FacebookAI/roberta-base',
     # 'falkne/storytelling-change-my-view-en',
-    'google-t5/t5-small',
+    # 'google-t5/t5-small',
 ]
 
 model_names = [
@@ -13,10 +13,10 @@ model_names = [
 
 # Define huggingface models default configurations
 classification_default_config = {
-    'learning_rate': 2e-5,
+    'learning_rate': 0.001,
     'per_device_train_batch_size': 8,
     'per_device_eval_batch_size': 8,
-    'num_train_epochs': 3,
+    'num_train_epochs': 5,
     'weight_decay': 0.01,
     'evaluation_strategy': 'epoch',
     'save_strategy': 'no',

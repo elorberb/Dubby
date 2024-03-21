@@ -1,5 +1,5 @@
 from hg_classification_pipe import train_and_evaluate
-import constants as const
+import src.constants as const
 
 # Iterate over models and train
 for model_name in const.classification_model_names:

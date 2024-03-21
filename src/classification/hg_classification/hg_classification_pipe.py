@@ -109,8 +109,12 @@ def train_and_evaluate(model_name, train_dataset_path, test_dataset_path, tokeni
             f.write(f"{key}: {value}\n")
     logger.info("Results saved.")
     
+    checkpoint_output_dir = "/home/etaylor/code_projects/dubby/results/last_model_roberta_checkpoint"
+    trainer.save_model(checkpoint_output_dir)  # Save the model to the specified output directory
+    
     logger.info("Training and evaluation completed. Freeing up GPU memory...")
     torch.cuda.empty_cache()
+    return trainer
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train and evaluate a text classification model with separate training and test datasets.")
