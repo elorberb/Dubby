@@ -1,46 +1,21 @@
-import os  
-from src import classification_prompts
-from src.langchain_utils import run_chain  
-from langchain_openai import AzureChatOpenAI  
+from langchain_openai import AzureChatOpenAI
 from langchain.prompts import PromptTemplate  
 from langchain.chains import LLMChain  
-from dotenv import load_dotenv  
-import pandas as pd  
-from sklearn.metrics import accuracy_score, precision_score, recall_score  
+from dotenv import load_dotenv
+from sklearn.metrics import accuracy_score, precision_score, recall_score
 from tqdm import tqdm
 import matplotlib.pyplot as plt  
 from sklearn.metrics import confusion_matrix, classification_report  
 from sklearn.metrics import roc_curve, auc  
 import numpy as np  
 import itertools
-from src import comments 
 import re
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from langchain.llms import AzureChatOpenAI, HuggingFacePipeline
-
+from src.langchain_utils import initialize_model
 
 # Load environment variables  
 load_dotenv() 
-  
-  
-
-def initialize_model(hg_model_name=None, azure_deployment=None, template=None, input_vars=None):
-    if azure_deployment:
-        llm = AzureChatOpenAI(azure_deployment=azure_deployment)
-    elif hg_model_name:
-        tokenizer = AutoTokenizer.from_pretrained(hg_model_name)
-        model = AutoModelForCausalLM.from_pretrained(hg_model_name)
-        pipe = HuggingFacePipeline(model=model, tokenizer=tokenizer, task="text-generation")
-        llm = pipe
-    else:
-        raise ValueError("Either azure_deployment or hg_model_name must be specified.")
-
-    if template and input_vars:
-        prompt_template = PromptTemplate(input_variables=input_vars, template=template)
-        chain = LLMChain(llm=llm, prompt=prompt_template)
-        return chain
-    else:
-        return llm
 
 
 def clean_text(text, default=None):  
@@ -51,7 +26,8 @@ def clean_text(text, default=None):
         return int(matches[0])  
     else:  
         # Return the default value if no integer is found  
-        return default  
+        return default
+
   
 def predict_labels(chain, df, n, input_vars_values):  
     df_copy = df.copy()  
@@ -70,7 +46,8 @@ def predict_labels(chain, df, n, input_vars_values):
             df_copy.at[i, 'predicted_label'] = None  # or some default value  
   
     return df_copy 
-  
+
+
 def calculate_metrics(df_copy, n):  
     true_labels = df_copy['label'].head(n).tolist()  
     predicted_labels = df_copy['predicted_label'].head(n).tolist()  
@@ -79,7 +56,8 @@ def calculate_metrics(df_copy, n):
     precision = precision_score(true_labels, predicted_labels, average='weighted', zero_division=0)  
     recall = recall_score(true_labels, predicted_labels, average='weighted', zero_division=0)  
   
-    return accuracy, precision, recall  
+    return accuracy, precision, recall
+
   
 def print_metrics(accuracy, precision, recall):  
     print(f"Accuracy: {accuracy}")  
@@ -87,7 +65,7 @@ def print_metrics(accuracy, precision, recall):
     print(f"Recall: {recall}")  
   
   
-def run_evaluation(df, azure_deployment_name, num_records, template_dict, input_vars, input_vars_values, verbose=False):  
+def run_classification_evaluation(df, azure_deployment_name, num_records, template_dict, input_vars, input_vars_values, verbose=False):
     """
     Runs the evaluation for a given dataframe and input variables.
     :param df: The dataframe to evaluate.
@@ -130,6 +108,7 @@ def run_evaluation(df, azure_deployment_name, num_records, template_dict, input_
         print_metrics(accuracy, precision, recall)  
   
     return results
+
 
 def evaluate_each_results(true_labels, predicted_labels):  
     # Assuming your classes are string or integer  
